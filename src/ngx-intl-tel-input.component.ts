@@ -18,7 +18,6 @@ export class NgxIntlTelInputComponent implements OnInit {
   phone_number = '';
   allCountries: Array<Country> = [];
   preferredCountriesInDropDown: Array<Country> = [];
-  availableCountriesInDropDown: Array<Country> = [];
   selectedCountry: Country = new Country();
   constructor(
       private countryCodeData: CountryCode
@@ -36,17 +35,14 @@ export class NgxIntlTelInputComponent implements OnInit {
       });
 
       this.availableCountries.forEach(iso2 => {
-        let availableCountry = this.allCountries.filter((c) => {
+         this.allCountries =this.allCountries.filter((c) => {
           return c.iso2 === iso2;
         });
-        this.availableCountriesInDropDown.push(availableCountry[0]);
       });
     }
 
     if (this.preferredCountriesInDropDown.length) {
       this.selectedCountry = this.preferredCountriesInDropDown[0];
-    } else if (this.availableCountriesInDropDown.length) {
-      this.selectedCountry = this.availableCountriesInDropDown[0];
     } else {
       this.selectedCountry = this.allCountries[0];
     }
