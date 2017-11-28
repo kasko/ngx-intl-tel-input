@@ -13,7 +13,7 @@
                 <span class="country-name">{{country.name}}</span>
                 <span class="dial-code">+{{country.dialCode}}</span>
             </li>
-            <li class="divider"></li>
+            <li class="divider" *ngIf="preferredCountriesInDropDown.length > 0"></li>
             <li class="country" *ngFor="let country of allCountries" (click)="onCountrySelect(country, focusable)">
                 <div class="flag-box">
                     <div class="iti-flag" [ngClass]="country.flagClass"></div>

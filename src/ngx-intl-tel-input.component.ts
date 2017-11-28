@@ -33,12 +33,18 @@ export class NgxIntlTelInputComponent implements OnInit {
         });
         this.preferredCountriesInDropDown.push(preferredCountry[0]);
       });
+    }
 
-      this.availableCountries.forEach(iso2 => {
-         this.allCountries =this.allCountries.filter((c) => {
+    if (this.availableCountries.length) {
+      const countries = [];
+
+      this.availableCountries.forEach((iso2) => {
+        countries.push(this.allCountries.find((c) => {
           return c.iso2 === iso2;
-        });
+        }));
       });
+
+      this.allCountries = countries;
     }
 
     if (this.preferredCountriesInDropDown.length) {
