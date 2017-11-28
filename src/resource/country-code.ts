@@ -582,11 +582,6 @@ export class CountryCode {
             '686'
         ],
         [
-            'Kosovo',
-            'xk',
-            '383'
-        ],
-        [
             'Kuwait (‫الكويت‬‎)',
             'kw',
             '965'
