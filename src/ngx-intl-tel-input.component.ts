@@ -12,11 +12,13 @@ import * as _ from 'google-libphonenumber';
 export class NgxIntlTelInputComponent implements OnInit {
   @Input() value = '';
   @Input() preferredCountries: Array<string> = [];
+  @Input() availableCountries: Array<string> = [];
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   phone_number = '';
   allCountries: Array<Country> = [];
   preferredCountriesInDropDown: Array<Country> = [];
+  availableCountriesInDropDown: Array<Country> = [];
   selectedCountry: Country = new Country();
   constructor(
       private countryCodeData: CountryCode
@@ -32,9 +34,19 @@ export class NgxIntlTelInputComponent implements OnInit {
         });
         this.preferredCountriesInDropDown.push(preferredCountry[0]);
       });
+
+      this.availableCountries.forEach(iso2 => {
+        let availableCountry = this.allCountries.filter((c) => {
+          return c.iso2 === iso2;
+        });
+        this.availableCountriesInDropDown.push(availableCountry[0]);
+      });
     }
+
     if (this.preferredCountriesInDropDown.length) {
       this.selectedCountry = this.preferredCountriesInDropDown[0];
+    } else if (this.availableCountriesInDropDown.length) {
+      this.selectedCountry = this.availableCountriesInDropDown[0];
     } else {
       this.selectedCountry = this.allCountries[0];
     }
