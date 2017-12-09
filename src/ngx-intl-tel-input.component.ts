@@ -79,7 +79,7 @@ export class NgxIntlTelInputComponent implements OnInit {
   }
 
   public onInputKeyPress(event): void {
-    const pattern = /[0-9\+\-\ ]/;
+    const pattern = /[0-9]/;
     let inputChar = String.fromCharCode(event.charCode);
     if (!pattern.test(inputChar)) {
       event.preventDefault();
