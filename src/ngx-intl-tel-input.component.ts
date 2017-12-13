@@ -13,6 +13,7 @@ export class NgxIntlTelInputComponent implements OnInit {
   @Input() value = '';
   @Input() preferredCountries: Array<string> = [];
   @Input() availableCountries: Array<string> = [];
+  @Input() placeholder: string;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   phone_number = '';

@@ -27,5 +27,5 @@
            (keypress)="onInputKeyPress($event)"
            [(ngModel)]="phone_number"
            (ngModelChange)="onPhoneNumberChange()"
-           [placeholder]="selectedCountry.placeHolder" #focusable>
+           [placeholder]="placeholder || selectedCountry.placeHolder" #focusable>
 </div>
