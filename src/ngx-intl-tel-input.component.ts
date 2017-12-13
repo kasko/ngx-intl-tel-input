@@ -29,9 +29,7 @@ export class NgxIntlTelInputComponent implements OnInit {
   ngOnInit() {
     if (this.preferredCountries.length) {
       this.preferredCountries.forEach(iso2 => {
-        let preferredCountry = this.allCountries.filter((c) => {
-          return c.iso2 === iso2;
-        });
+        const preferredCountry = this.allCountries.filter((c) => c.iso2 === iso2);
         this.preferredCountriesInDropDown.push(preferredCountry[0]);
       });
     }
@@ -40,17 +38,17 @@ export class NgxIntlTelInputComponent implements OnInit {
       const countries = [];
 
       this.availableCountries.forEach((iso2) => {
-        countries.push(this.allCountries.find((c) => {
-          return c.iso2 === iso2;
-        }));
+        countries.push(this.allCountries.find((c) => c.iso2 === iso2));
       });
 
       this.allCountries = countries;
     }
 
+    const value = this.value.replace(/^\+/, '');
+
     const selectedCountry = this.allCountries.find((country) => {
       const regex = new RegExp(`^${country.dialCode}`);
-      return regex.test(this.value);
+      return regex.test(value);
     });
 
     if (selectedCountry) {
@@ -62,7 +60,7 @@ export class NgxIntlTelInputComponent implements OnInit {
     }
 
     const regex = new RegExp(`^${this.selectedCountry.dialCode}`);
-    this.phone_number = this.value.replace(regex, '');
+    this.phone_number = value.replace(regex, '');
   }
 
   public onPhoneNumberChange(): void {
@@ -80,7 +78,7 @@ export class NgxIntlTelInputComponent implements OnInit {
   }
 
   public onInputKeyPress(event): void {
-    const pattern = /[0-9]/;
+    const pattern = /[0-9+]/;
     let inputChar = String.fromCharCode(event.charCode);
     if (!pattern.test(inputChar)) {
       event.preventDefault();
