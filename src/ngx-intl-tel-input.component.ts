@@ -44,7 +44,7 @@ export class NgxIntlTelInputComponent implements OnInit {
       this.allCountries = countries;
     }
 
-    const value = this.value.replace(/^\+/, '');
+    const value = (this.value || '').replace(/^\+/, '');
 
     const selectedCountry = this.allCountries.find((country) => {
       const regex = new RegExp(`^${country.dialCode}`);
