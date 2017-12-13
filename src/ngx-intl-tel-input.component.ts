@@ -59,8 +59,7 @@ export class NgxIntlTelInputComponent implements OnInit {
       this.selectedCountry = this.allCountries[0];
     }
 
-    const regex = new RegExp(`^${this.selectedCountry.dialCode}`);
-    this.phone_number = value.replace(regex, '');
+    this.phone_number = `+${value}`;
   }
 
   public onPhoneNumberChange(): void {
