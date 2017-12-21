@@ -47,10 +47,7 @@ gulp.task('inline-resources', function () {
  *    compiled modules to the /build folder.
  */
 gulp.task('ngc', function () {
-  return ngc({
-    project: `${tmpFolder}/tsconfig.es5.json`
-  })
-    .then((exitCode) => {
+  return ngc(['-p', `${tmpFolder}/tsconfig.es5.json`], (exitCode) => {
       if (exitCode === 1) {
         // This error is caught in the 'compile' task by the runSequence method callback
         // so that when ngc fails to compile, the whole compile process stops running
@@ -117,7 +114,7 @@ gulp.task('rollup:umd', function () {
       // The name to use for the module for UMD/IIFE bundles
       // (required for bundles with exports)
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-      moduleName: 'ngx-intl-tel-input',
+      name: 'ngx-intl-tel-input',
 
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
       globals: {

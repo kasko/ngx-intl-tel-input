@@ -1,5 +1,5 @@
 {
-  "name": "ngx-intl-tel-input",
+  "name": "@kasko/ngx-intl-tel-input",
   "version": "1.0.1",
   "scripts": {
     "build": "gulp build",

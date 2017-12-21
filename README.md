@@ -110,6 +110,13 @@ To lint all `*.ts` files:
 $ npm run lint
 ```
 
+## Publishing
+
+```sh
+npm run build
+npm run publish dist
+```
+
 ## License
 
 MIT © [webcat12345](mailto:webcat91@gmail.com)
