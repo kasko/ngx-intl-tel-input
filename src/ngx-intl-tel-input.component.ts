@@ -75,6 +75,14 @@ export class NgxIntlTelInputComponent implements OnInit {
   }
 
   public onInputKeyPress(event): void {
+    // keyCode 8  -> backspace
+    // keyCode 46 -> delete
+    // keyCode 37 -> left arrow
+    // keyCode 39 -> right arrow
+    if ([8, 46, 37, 39].indexOf(event.keyCode) >= 0) {
+      return;
+    }
+
     const pattern = /[0-9+]/;
     let inputChar = String.fromCharCode(event.charCode);
     if (!pattern.test(inputChar)) {
@@ -85,6 +93,10 @@ export class NgxIntlTelInputComponent implements OnInit {
   protected setValue(value, emit: boolean = true) {
     const country = this.selectedCountry;
     const regex = new RegExp(`^${country.dialCode}`);
+
+    if (['ch'].indexOf(country.iso2) >= 0) {
+      value = value.replace(/^0/, '');
+    }
 
     this.value = '+' + country.dialCode + value.replace(/^\+/, '').replace(regex, '');
 
