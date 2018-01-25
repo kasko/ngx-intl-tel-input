@@ -22,7 +22,7 @@
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "ngx-intl-tel-input.js",
-    "flatModuleId": "ngx-intl-tel-input"
+    "flatModuleId": "@kasko/ngx-intl-tel-input"
   },
   "files": [
     "./index.ts"
