@@ -1,6 +1,6 @@
 {
   "name": "@kasko/ngx-intl-tel-input",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "repository": {
     "type": "git",
     "url": "https://github.com/webcat12345/ngx-intl-tel-input"
@@ -19,7 +19,7 @@
   "module": "ngx-intl-tel-input.js",
   "typings": "ngx-intl-tel-input.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.0.0",
+    "@angular/core": "^4.0.0 || ^5.0.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
