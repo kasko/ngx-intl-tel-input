@@ -9,7 +9,7 @@ export * from './ngx-intl-tel-input.component';
   imports: [
     CommonModule,
     FormsModule,
-    BsDropdownModule
+    BsDropdownModule.forRoot()
   ],
   declarations: [
     NgxIntlTelInputComponent
