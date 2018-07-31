@@ -131,7 +131,7 @@ export class NgxIntlTelInputComponent implements OnInit {
       let phoneNumber = phoneUtil.parse('2236512366', countryCode);
       return phoneUtil
         .format(phoneNumber, pnf.INTERNATIONAL)
-        .substr(countryCode.length + 2);
+        .replace(/^\+[^ ]+/, '').trim();
     } catch (e) {
       console.log('CountryCode: "' + countryCode + '" ' + e);
       return e;
