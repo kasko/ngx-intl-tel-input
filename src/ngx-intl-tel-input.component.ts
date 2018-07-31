@@ -95,13 +95,18 @@ export class NgxIntlTelInputComponent implements OnInit {
     return this.countrycode.nativeElement.getBoundingClientRect().width;
   }
 
+  protected clearZeros(value: string): string {
+    // charCodeAt 48  -> '0'
+    return value.charCodeAt(0) === 48
+      ? this.clearZeros(value.substr(1))
+      : value;
+  }
+
   protected setValue(value, emit: boolean = true) {
     const country = this.selectedCountry;
     const regex = new RegExp(`^\\+${country.dialCode}`);
 
-    if (['ch'].indexOf(country.iso2) >= 0) {
-      value = value.replace(/^0/, '');
-    }
+    value = this.clearZeros(value);
 
     this.value = '+' + country.dialCode + value.replace(regex, '');
 
