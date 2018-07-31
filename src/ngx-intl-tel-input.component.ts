@@ -97,13 +97,13 @@ export class NgxIntlTelInputComponent implements OnInit {
 
   protected setValue(value, emit: boolean = true) {
     const country = this.selectedCountry;
-    const regex = new RegExp(`^${country.dialCode}`);
+    const regex = new RegExp(`^\\+${country.dialCode}`);
 
     if (['ch'].indexOf(country.iso2) >= 0) {
       value = value.replace(/^0/, '');
     }
 
-    this.value = '+' + country.dialCode + value.replace(/^\+/, '').replace(regex, '');
+    this.value = '+' + country.dialCode + value.replace(regex, '');
 
     if (emit) {
       this.valueChange.emit(this.value);
