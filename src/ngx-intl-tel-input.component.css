@@ -1,3 +1,12 @@
 li.country:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
+
+.iti-code {
+    display: inline-block;
+    padding-right: 3.5px;
+    position: absolute;
+    left: 52px; top: 6px;
+    background-color: #fff;
+    pointer-events: none;
+}
