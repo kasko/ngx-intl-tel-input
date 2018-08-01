@@ -1,4 +1,4 @@
-import { Component, Output, Input, OnInit, EventEmitter } from '@angular/core';
+import { Component, Output, Input, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { CountryCode } from './resource/country-code';
 import { Country } from './model/country.model';
 import * as _ from 'google-libphonenumber';
@@ -15,6 +15,7 @@ export class NgxIntlTelInputComponent implements OnInit {
   @Input() availableCountries: Array<string> = [];
   @Input() placeholder: string;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+  @ViewChild('countrycode') countrycode;
 
   phone_number = '';
   allCountries: Array<Country> = [];
@@ -59,7 +60,7 @@ export class NgxIntlTelInputComponent implements OnInit {
       this.selectedCountry = this.allCountries[0];
     }
 
-    this.phone_number = value;
+    this.phone_number = this.removeCountryCode(this.selectedCountry, value);
   }
 
   public onPhoneNumberChange(): void {
@@ -90,15 +91,28 @@ export class NgxIntlTelInputComponent implements OnInit {
     }
   }
 
+  public getCountryCodeWidth(): number {
+    return this.countrycode.nativeElement.getBoundingClientRect().width;
+  }
+
+  protected clearZeros(value: string): string {
+    // charCodeAt 48  -> '0'
+    return value.charCodeAt(0) === 48
+      ? this.clearZeros(value.substr(1))
+      : value;
+  }
+
+  protected removeCountryCode(country: Country, value: string) {
+    const regex = new RegExp(`^\\+${country.dialCode}`);
+    return value.replace(regex, '');
+  }
+
   protected setValue(value, emit: boolean = true) {
     const country = this.selectedCountry;
-    const regex = new RegExp(`^${country.dialCode}`);
 
-    if (['ch'].indexOf(country.iso2) >= 0) {
-      value = value.replace(/^0/, '');
-    }
+    value = this.clearZeros(value);
 
-    this.value = '+' + country.dialCode + value.replace(/^\+/, '').replace(regex, '');
+    this.value = '+' + country.dialCode + this.removeCountryCode(country, value);
 
     if (emit) {
       this.valueChange.emit(this.value);
@@ -124,7 +138,9 @@ export class NgxIntlTelInputComponent implements OnInit {
     const pnf = _.PhoneNumberFormat;
     try {
       let phoneNumber = phoneUtil.parse('2236512366', countryCode);
-      return phoneUtil.format(phoneNumber, pnf.INTERNATIONAL);
+      return phoneUtil
+        .format(phoneNumber, pnf.INTERNATIONAL)
+        .replace(/^\+[^ ]+/, '').trim();
     } catch (e) {
       console.log('CountryCode: "' + countryCode + '" ' + e);
       return e;
