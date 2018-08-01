@@ -6,7 +6,10 @@ li.country:hover {
     display: inline-block;
     padding-right: 3.5px;
     position: absolute;
-    left: 52px; top: 6px;
+    left: 50px;
+    top: 50%;
+    margin-top: -10px;
+    line-height: 20px;
     background-color: #fff;
     pointer-events: none;
 }
