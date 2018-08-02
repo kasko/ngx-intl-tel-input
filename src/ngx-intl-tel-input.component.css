@@ -10,6 +10,5 @@ li.country:hover {
     top: 50%;
     margin-top: -10px;
     line-height: 20px;
-    background-color: #fff;
     pointer-events: none;
 }
