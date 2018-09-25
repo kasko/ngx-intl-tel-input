@@ -110,9 +110,9 @@ export class NgxIntlTelInputComponent implements OnInit {
   protected setValue(value, emit: boolean = true) {
     const country = this.selectedCountry;
 
-    value = this.clearZeros(value);
+    value = this.removeCountryCode(country, this.clearZeros(value));
 
-    this.value = '+' + country.dialCode + this.removeCountryCode(country, value);
+    this.value = value ? '+' + country.dialCode + value : value;
 
     if (emit) {
       this.valueChange.emit(this.value);
