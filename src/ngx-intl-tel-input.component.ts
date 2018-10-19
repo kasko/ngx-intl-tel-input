@@ -14,6 +14,7 @@ export class NgxIntlTelInputComponent implements OnInit {
   @Input() preferredCountries: Array<string> = [];
   @Input() availableCountries: Array<string> = [];
   @Input() placeholder: string;
+  @Input() disabled: boolean = false;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('countrycode') countrycode;
 
