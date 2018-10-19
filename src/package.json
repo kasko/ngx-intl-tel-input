@@ -1,6 +1,6 @@
 {
   "name": "@kasko/ngx-intl-tel-input",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "repository": {
     "type": "git",
     "url": "https://github.com/webcat12345/ngx-intl-tel-input"
